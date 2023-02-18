@@ -1,7 +1,7 @@
-variable "resource_group_location" {
+/* variable "resource_group_location" {
   default     = "swedencentral"
   description = "Location of the resource group."
-}
+} */
 
 variable "location" {
   type        = string
@@ -28,23 +28,6 @@ variable "linux_machine_name" {
 }
 
 variable "vm_size" {
-  default     = "Standard_D2as_v5"
-  type        = string
-  description = "The size of the VM"
-}
-
-variable "storage_account_tier" {
-  type        = string
-  default     = "Standard"
-  description = "Defines the Tier to use for this storage account. Valid options are Standard and Premium"
-}
-variable "storage_account_replication_type" {
-  type        = string
-  default     = "LRS"
-  description = "Defines the type of replication to use for this storage account. Valid options are LRS, GRS, RAGRS, ZRS, GZRS and RAGZRS."
-}
-
-variable "nsg_source_port" {
   default     = "Standard_D2as_v5"
   type        = string
   description = "The size of the VM"
@@ -83,24 +66,6 @@ variable "source_imgage_reference_version" {
   description = "The version of the image"
 }
 
-variable "source_plan_name" {
-  default     = "pay-per-use"
-  type        = string
-  description = "The source plan of the image"
-}
-
-variable "source_plan_publisher" {
-  default     = "noricumcloudsolutions1600524477681"
-  type        = string
-  description = "The source plan publisher"
-}
-
-variable "source_plan_product" {
-  default     = "ubuntu-22-gui"
-  type        = string
-  description = "The source plan product"
-}
-
 # ---------------------------------------------------------------------------------------------------------------------
 # label_ - resource group label variables - used in terraform-null-label
 # ---------------------------------------------------------------------------------------------------------------------
@@ -121,38 +86,4 @@ variable "label_name" {
   description = "Name, which could be the name of your solution or app. Third item in naming sequence."
   default     = ""
   type        = string
-}
-
-variable "label_attributes" {
-  type        = list(string)
-  default     = []
-  description = "Additional attributes, e.g. `1`"
-}
-
-# ---------------------------------------------------------------------------------------------------------------------
-# kv- - KeyVault permissions
-# ---------------------------------------------------------------------------------------------------------------------
-
-variable "kv-key-permissions-full" {
-  type        = list(string)
-  description = "List of full key permissions, must be one or more from the following: Backup, Create, Decrypt, Delete, Encrypt, Get, Import, List, Purge, Recover, Restore, Sign, UnwrapKey, Update, Verify, WrapKey, Release, Rotate, GetRotationPolicy, and SetRotationPolicy."
-  default     = ["Backup", "Create", "Decrypt", "Delete", "Encrypt", "Get", "Import", "List", "Purge", "Recover", "Restore", "Sign", "UnwrapKey", "Update", "Verify", "WrapKey", "Release", "Rotate", "GetRotationPolicy", "SetRotationPolicy"]
-}
-
-variable "kv-secret-permissions-full" {
-  type        = list(string)
-  description = "List of full secret permissions, must be one or more from the following: Backup, Delete, Get, List, Purge, Recover, Restore and Set."
-  default     = ["Backup", "Delete", "Get", "List", "Purge", "Recover", "Restore", "Set"]
-}
-
-variable "kv-certificate-permissions-full" {
-  type        = list(string)
-  description = "List of full certificate permissions, must be one or more from the following: Backup, Create, Delete, DeleteIssuers, Get, GetIssuers, Import, List, ListIssuers, ManageContacts, ManageIssuers, Purge, Recover, Restore, SetIssuers and Update"
-  default     = ["Backup", "Create", "Delete", "DeleteIssuers", "Get", "GetIssuers", "Import", "List", "ListIssuers", "ManageContacts", "ManageIssuers", "Purge", "Recover", "Restore", "SetIssuers", "Update"]
-}
-
-variable "kv-storage-permissions-full" {
-  type        = list(string)
-  description = "List of full storage permissions, must be one or more from the following: Backup, Delete, DeleteSAS, Get, GetSAS, List, ListSAS, Purge, Recover, RegenerateKey, Restore, Set, SetSAS and Update."
-  default     = ["Backup", "Delete", "DeleteSAS", "Get", "GetSAS", "List", "ListSAS", "Purge", "Recover", "RegenerateKey", "Restore", "Set", "SetSAS", "Update"]
 }
