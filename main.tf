@@ -1,11 +1,3 @@
-#locals{
-  # Get terraform.io notifications ip range and add client_ip to local.ip_rules
-  # Make sure to allow the backend client ip, in this example terraform cloud is used for backend state
-  #terraform_ip_range =[for i in data.tfe_ip_ranges.addresses.notifications : replace(i, "/32", "")]
-  #client_ip = chomp(data.http.myip.response_body)
-  #ip_rules = concat(local.terraform_ip_range, [local.client_ip])
-#}
-
 # Create resource group for virtual machine
 resource "azurerm_resource_group" "rg_linux_vm" {
   name     = var.resource_group_name == "" ? module.resource_group_label.id : var.resource_group_name
@@ -122,12 +114,6 @@ resource "azurerm_linux_virtual_machine" "virtual_ubuntu_desktop_vm" {
     version   = var.source_imgage_reference_version
   }
 
-/*   plan {
-    name = var.source_plan_name
-    publisher = var.source_plan_publisher
-    product = var.source_plan_product
-  } */
-
   computer_name                   = var.linux_machine_name
   admin_username                  = "azureuser"
   disable_password_authentication = true
@@ -137,8 +123,5 @@ resource "azurerm_linux_virtual_machine" "virtual_ubuntu_desktop_vm" {
     public_key = tls_private_key.ubuntu_desktop_priv_key.public_key_openssh
   }
 
-  /* boot_diagnostics {
-    storage_account_uri = azurerm_storage_account.vm_boot_diag_storage.primary_blob_endpoint
-  } */
   allow_extension_operations = false
 }
